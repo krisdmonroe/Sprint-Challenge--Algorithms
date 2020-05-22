@@ -14,10 +14,12 @@ def count_th(word):
     #     return count_th(word[1:]) + 1
     # else:
     #     return count_th(word[1:])
+
     # ------------------------------------------------------------------
     # if not word:
     #     return 0
     # return (1 if word[0] == string1 and word[1] == string2 else 0) + count_th(word[1:])
+
     # ----------------------------------------------------------------------------
     # if not word:
     #     return 0
@@ -26,6 +28,7 @@ def count_th(word):
     #         return 1 + count_th(word[1:])
     #     else:
     #         return 0 + count_th(word[1:])
+    
     # ----------------------------------------------------------------------------
     string = 'th'
     if not word:

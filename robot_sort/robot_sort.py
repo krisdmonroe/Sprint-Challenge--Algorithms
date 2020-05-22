@@ -91,7 +91,7 @@ class SortingRobot:
         Returns True if the robot's light is on and False otherwise.
         """
         return self._light == "ON"
-
+    
     def sort(self):
         """
         Sort the robot's list.
@@ -100,13 +100,52 @@ class SortingRobot:
         # # easiest way possible
         # self._list.sort()
         # ---------------------------------
+        
+        # for i in range(0, len(self._list) -1):
+        #     cur_index = i
+        #     small_index = cur_index
+        #     for j in range(i+1, len(self._list)):
+        #         if self._list[small_index] > self._list[j]:
+        #             small_index = j
+        #     self._list[i], self._list[small_index] = self._list[small_index], self._list[i]
+
+        # ----------------------------------
+        #     def bubble_sort(arr):
+   
+        # indexing_length = len(arr) -1
+        # sorted = False
+        # while not sorted:
+        #     # will set it to true once the entire array is sorted thorught and the previous item is less then the next item
+        #     sorted = True
+        #     # Goes throught and sets i to the entore length of the array
+        #     for i in range(0, indexing_length):
+        #         # if the left item is greater then right 
+        #         if arr[i] > arr[i+1]:
+        #             # set sorted to false to continoue the while loop
+        #             sorted = False
+        #             # set the item on right to be item on left 
+        #             arr[i], arr[i+1] = arr[i+1], arr[i]
+        # return arr
+
+        # ---------------------------------------------------
+
+        # check to see if held item is greater
+        # if held item is greater swap with the smaller item
+        # go back left and swap that item for the smaller value
+        # then continue the loop
+        # and only do this while you can move right is still true meaning not at the end of the array
+
+        # --------------------------------------
+        # Turn the light on to start the bot
         self.set_light_on()
-        while self.light_is_on:
+        while self.light_is_on():
+            # turn light off after everything else is met to end loop
             self.set_light_off()
             while self.can_move_right():
+                # continue right down the list
                 self.swap_item()
                 self.move_right()
-                if self.compare_item() ==  1:
+                if self.compare_item() == 1:
                     # held item is greater
                     self.swap_item()
                     # swap with the lesser value
@@ -115,12 +154,21 @@ class SortingRobot:
                     self.swap_item()
                     # swap that smaller item here
                     self.move_right()
-                    # move back and compare again
+                    # move back and compare again turn light on to continue
                     self.set_light_on()
                 else:
+                    # held item is smaller
                     self.move_left()
+                    # swap smaller for larger one
                     self.swap_item()
+                    # move that larger item back to the right
                     self.move_right()
+            # without this robot will get the item and go to the item that is larger then place it and then continue
+            # without making the entire list in order
+            while self.can_move_left():
+                self.move_left()
+            
+
             
 
 
